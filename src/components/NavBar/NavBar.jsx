@@ -13,12 +13,27 @@ const NavBar = ({ setUser, user }) => {
 
   return (
     <nav>
-      {user.name}
+      LOGO 
       &nbsp; | &nbsp;
-      <Link to="/orders">Order History</Link>
+      All Games
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-      &nbsp; | &nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
+      XBOX
+      &nbsp; | &nbsp;
+      Nintendo
+      &nbsp; | &nbsp;
+      PC
+      &nbsp; | &nbsp;
+      PS4
+      &nbsp; | &nbsp;
+      {user ? 
+      <>Welcome, {user.name}!
+      &nbsp; | &nbsp;
+      <Link to="" onClick={handleLogOut}>Log Out</Link>
+      </>
+      :
+      <Link to="/signin">Sign In</Link>
+    }
+
     </nav>
   )
 }
