@@ -55,7 +55,7 @@ function App() {
         <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
         <Route path="/signin" element={<AuthPage setUser={setUser} />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </main>
   );
 }
