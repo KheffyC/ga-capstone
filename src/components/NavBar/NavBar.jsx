@@ -15,8 +15,6 @@ const NavBar = ({ setUser, user }) => {
     <nav>
       LOGO 
       &nbsp; | &nbsp;
-      All Games
-      &nbsp; | &nbsp;
       XBOX
       &nbsp; | &nbsp;
       Nintendo
