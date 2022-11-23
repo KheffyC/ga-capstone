@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css';
 import { getUser } from '../../utilities/users-service';
@@ -14,6 +14,9 @@ function App() {
   const [data, setData] = useState([])
   const [recentGames, setRecentGames] = useState([])
   const [genres, setGenres] = useState([])
+  const [platforms, setPlatforms] = useState([])
+  const platformsRef = useRef([])
+
 
   useEffect(() => {
     async function getGames(){
@@ -27,21 +30,27 @@ function App() {
     }
     async function getGenres(){
       const apiData = await gamesAPI.getGenres()
-      console.log(apiData, 'platforms have arrived')
       setGenres(apiData.results)
+    }
+    async function getPlatformData(){
+      const apiData = await gamesAPI.getPlatformData()
+      setPlatforms(apiData.results)
+      platformsRef.current = apiData.results.map(platform => platform.name).slice(0, -6)
+      console.log(platformsRef.current, 'should work')
     }
 
 
     getGames()
     getMostRecentGames()
     getGenres()
+    getPlatformData()
   }, [])
   
 
 
   return (
     <main className="App">
-      <NavBar user={user} />
+      <NavBar user={user} setUser={setUser} platforms={platformsRef.current} />
       <Routes>
         <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
         <Route path="/signin" element={<AuthPage setUser={setUser} />} />
