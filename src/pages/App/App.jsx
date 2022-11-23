@@ -4,6 +4,7 @@ import './App.css';
 import { getUser } from '../../utilities/users-service';
 import NavBar from '../../components/NavBar/NavBar';
 import Home from '../Home/Home'
+import GameGenres from '../GameGenres/GameGenres'
 import AuthPage from '../AuthPage/AuthPage'
 import Footer from '../../components/Footer/Footer';
 import * as gamesAPI from '../../utilities/game-api'
@@ -53,6 +54,7 @@ function App() {
       <NavBar user={user} setUser={setUser} platforms={platformsRef.current} />
       <Routes>
         <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
+        <Route path="/genres/:genre" element={<GameGenres />} />
         <Route path="/signin" element={<AuthPage setUser={setUser} />} />
       </Routes>
       <Footer />
