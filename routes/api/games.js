@@ -6,6 +6,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 router.get('/', gamesCtrl.getGames)
 router.get('/recent', gamesCtrl.recentGames)
 router.get('/genres', gamesCtrl.genres)
+router.get('/genres/:genre', gamesCtrl.getGenreCatalog)
 router.get('/platforms', gamesCtrl.getPlatformData)
 
 module.exports = router

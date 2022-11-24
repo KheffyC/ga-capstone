@@ -18,3 +18,8 @@ export async function getGenres(){
 export async function getPlatformData(){
     return sendRequest(`${SERVER_URL}/platforms`)
 }
+
+export async function getGenreCatalog(genre){
+    console.log(genre, ' in the api request')
+    return sendRequest(`${SERVER_URL}/genres/${genre}`)
+}
