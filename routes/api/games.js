@@ -8,5 +8,6 @@ router.get('/recent', gamesCtrl.recentGames)
 router.get('/genres', gamesCtrl.genres)
 router.get('/genres/:genre', gamesCtrl.getGenreCatalog)
 router.get('/platforms', gamesCtrl.getPlatformData)
+router.get('/platforms/:platformId', gamesCtrl.getAllPlatformGames)
 
 module.exports = router

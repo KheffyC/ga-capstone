@@ -6,6 +6,7 @@ module.exports ={
     genres,
     getGenreCatalog,
     getPlatformData,
+    getAllPlatformGames,
 }
 
 
@@ -87,6 +88,25 @@ async function getGenreCatalog(req, res){
 
 async function getPlatformData(req, res){
     const url = `https://rawg.io/api/platforms/lists/parents?key=${process.env.API_KEY}`;
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try{
+        const response = await fetch(url, options)
+        const data = await response.json()
+        res.json(data)
+    } catch(err){
+        console.log(err.message)
+    }
+}
+
+async function getAllPlatformGames(req, res){
+    const url = `https://rawg.io/api/games?parent_platforms=${req.params.platformId}&key=${process.env.API_KEY}&ordering=-rating`;
     
     const options = {
         method: 'GET',

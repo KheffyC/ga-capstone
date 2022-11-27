@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom'
 import * as userService from '../../utilities/users-service'
 
-const NavBar = ({ setUser, user, platforms }) => {
+const NavBar = ({ setUser, user, navbarPlatforms }) => {
   
+  const navPlatforms = navbarPlatforms.map((platform, idx) => (<Link to={`/platforms/${platform.slug}`} key={idx}  ><p>{platform.name}</p></Link>))
+
   const handleLogOut = () => {
 
     userService.logOut();
     setUser()
   }
 
-  const navPlatforms = platforms.map((platform, idx) => (<p key={idx}>{platform}</p>))
+
+
 
 
   return (

@@ -6,6 +6,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Home from '../Home/Home'
 import GameGenre from '../GameGenre/GameGenre'
 import AuthPage from '../AuthPage/AuthPage'
+import PlatformGames from '../PlatformGames/PlatformGames';
 import Footer from '../../components/Footer/Footer';
 import * as gamesAPI from '../../utilities/game-api'
 
@@ -14,8 +15,7 @@ function App() {
   const [user, setUser] = useState(getUser())
   const [recentGames, setRecentGames] = useState([])
   const [genres, setGenres] = useState([])
-  const platformsRef = useRef([])
-
+  const [navbarPlatforms, setNavbarPlatforms] = useState([])
 
   useEffect(() => {
     async function getMostRecentGames(){
@@ -28,7 +28,7 @@ function App() {
     }
     async function getPlatformData(){
       const apiData = await gamesAPI.getPlatformData()
-      platformsRef.current = apiData.results.map(platform => platform.name).slice(0, -6)
+      setNavbarPlatforms(apiData.results.slice(0,-6))
     }
 
     getMostRecentGames()
@@ -40,11 +40,12 @@ function App() {
 
   return (
     <main className="App">
-      <NavBar user={user} setUser={setUser} platforms={platformsRef.current} />
+      <NavBar user={user} setUser={setUser} navbarPlatforms={navbarPlatforms} />
       <Routes>
         <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
         <Route path="/genres/:genre" element={<GameGenre />} />
         <Route path="/signin" element={<AuthPage setUser={setUser} />} />
+        <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
       </Routes>
       <Footer />
     </main>

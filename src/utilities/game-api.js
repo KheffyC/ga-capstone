@@ -20,6 +20,9 @@ export async function getPlatformData(){
 }
 
 export async function getGenreCatalog(genre){
-    console.log(genre, ' in the api request')
     return sendRequest(`${SERVER_URL}/genres/${genre}`)
+}
+
+export async function getAllPlatformGames(platformId){
+    return sendRequest(`${SERVER_URL}/platforms/${platformId}`)
 }

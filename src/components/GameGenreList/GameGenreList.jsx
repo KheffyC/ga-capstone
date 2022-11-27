@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 const GameGenreList = ({ genres }) => {
 
   // First 6 categories that will be displayed in cards
-    const popularGenres = genres.map(genre => (
-      <Link to={`/genres/${genre.slug}`}>
+    const popularGenres = genres.map((genre, idx) => (
+      <Link to={`/genres/${genre.slug}`} key={idx}>
         <div
-          key={genre.name}
           className="border-4"
           style={{background: `url(${genre.image_background}) center / cover no-repeat`, height: '40vh', width: '48vw'}}
           >
@@ -17,10 +16,9 @@ const GameGenreList = ({ genres }) => {
 
 
   // Rest of the genres that will be displayed in carousel. 
-    const lesserGenres = genres.map(genre => (
-      <Link to={`genres/${genre.slug}`}>
+    const lesserGenres = genres.map((genre, idx) => (
+      <Link to={`genres/${genre.slug}`} key={idx}>
         <div
-          key={genre.name}
           style={{background: `url(${genre.image_background}) center / cover no-repeat`, height: '15vh', width: '7vw'}}
           >
           {genre.name}
