@@ -26,3 +26,7 @@ export async function getGenreCatalog(genre){
 export async function getAllPlatformGames(platformId){
     return sendRequest(`${SERVER_URL}/platforms/${platformId}`)
 }
+
+export async function getSingleGameData(gameId){
+    return sendRequest(`${SERVER_URL}/games/${gameId}`)
+}

@@ -19,7 +19,7 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
 
     <nav>
       <div className='flex justify-between align-items'> 
-        LOGO 
+        <Link to="/">LOGO</Link>
         &nbsp; | &nbsp;
         {user ? 
         <>Welcome, {user.name}!

@@ -5,6 +5,7 @@ import { getUser } from '../../utilities/users-service';
 import NavBar from '../../components/NavBar/NavBar';
 import Home from '../Home/Home'
 import GameGenre from '../GameGenre/GameGenre'
+import SingleGamePage from '../SingleGamePage/SingleGamePage';
 import AuthPage from '../AuthPage/AuthPage'
 import PlatformGames from '../PlatformGames/PlatformGames';
 import Footer from '../../components/Footer/Footer';
@@ -44,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
         <Route path="/genres/:genre" element={<GameGenre />} />
+        <Route path="/games/:gameId" element={<SingleGamePage />} />
         <Route path="/signin" element={<AuthPage setUser={setUser} />} />
         <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
       </Routes>
