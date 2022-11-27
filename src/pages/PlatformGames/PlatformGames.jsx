@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import * as gamesAPI from '../../utilities/game-api'
 
 const PlatformGames = ({ navbarPlatforms }) => {
@@ -23,7 +23,7 @@ const PlatformGames = ({ navbarPlatforms }) => {
   return (
     <>
         <div>
-            {allPlatformGames.map((game, idx) => (<div>{game.name}</div>))}
+            {allPlatformGames.map((game, idx) => (<div><Link to={`/games/${game.id}`}>{game.name}</Link></div>))}
         </div>
     </>
   )

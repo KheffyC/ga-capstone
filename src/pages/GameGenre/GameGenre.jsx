@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react' 
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import * as gamesAPI from '../../utilities/game-api'
 
 const GameGenre = ({ currentGenre }) => {
@@ -17,7 +17,7 @@ const GameGenre = ({ currentGenre }) => {
     }, [])
 
   return (
-    <div>{genreCatalog.map((game) => <div key={game.name}>{game.name}</div>)}</div>
+    <div>{genreCatalog.map((game) => <div key={game.name}><Link to={`/games/${game.id}`}>{game.name}</Link></div>)}</div>
   )
 }
 

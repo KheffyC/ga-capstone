@@ -1,9 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import * as userService from '../../utilities/users-service'
 
 const NavBar = ({ setUser, user, navbarPlatforms }) => {
+
+  let activeStyle = {
+    textDecoration: "underline",
+    backgroundColor: 'white',
+    color: 'black'
+  };
+
+
   
-  const navPlatforms = navbarPlatforms.map((platform, idx) => (<Link to={`/platforms/${platform.slug}`} key={idx}  ><p>{platform.name}</p></Link>))
+  const navPlatforms = navbarPlatforms.map((platform, idx) => (
+    <NavLink to={`/platforms/${platform.slug}`} key={idx} style={ ( { isActive } ) => isActive ? activeStyle : undefined}   >
+      <p>{platform.name}</p>
+    </NavLink>))
 
   const handleLogOut = () => {
 
