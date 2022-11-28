@@ -22,13 +22,13 @@ const SingleGamePage = () => {
 
   return (
     <>
-        <section className="bg-white dark:bg-black">
+        <section className=" dark:bg-black">
             <div className="container px-6 py-10 mx-auto">
                 <div className="lg:flex lg:items-center">
                     <div className="w-full space-y-12 lg:w-1/2 ">
                         <div>
                             <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
-                                <h1 className="text-3xl font-semibold tracking-tight text-gray-700 sm:text-4xl dark:text-white">{game.name}</h1>
+                                <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl dark:text-white">{game.name}</h1>
                                 <div className="mt-2">
                                     <span className="inline-block w-40 h-1 bg-red-700 rounded-full"></span>
                                     <span className="inline-block w-3 h-1 ml-1 bg-red-700 rounded-full"></span>
@@ -42,7 +42,7 @@ const SingleGamePage = () => {
                                     </div>
 
                                     <div className="inline-flex w-full mt-4 sm:w-auto sm:mx-2 sm:mt-0">
-                                        <button className="inline-flex items-center justify-center w-full px-5 py-2 text-gray-700 transition-colors duration-150 transform bg-white border border-gray-200 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-100 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
+                                        <button className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-gray-900 border-gray-700 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-700 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
                                             Add to Already Played
                                         </button>
                                     </div>
@@ -52,9 +52,9 @@ const SingleGamePage = () => {
 
                         <div className="md:flex md:items-start md:-mx-4">
                             <div className="mt-4 md:mx-4 md:mt-0">
-                                <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">Description</h1>
+                                <h1 className="text-2xl font-semibold capitalize dark:text-white">Description</h1>
 
-                                <p className="mt-3 text-gray-500 dark:text-gray-300" onClick={() => setShowMore(!showMore)}>
+                                <p className="mt-3 dark:text-gray-300" onClick={() => setShowMore(!showMore)}>
                                 {showMore ? game.description_raw : `${game.description_raw?.substring(0, 250)}...`}
                                 </p>
                             </div>
@@ -62,15 +62,15 @@ const SingleGamePage = () => {
                         <div className="container px-6 py-12 mx-auto">
                             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                                 <div>
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">{game.rating} / 5</h1>
+                                    <h1 className="mt-4 text-xl font-semibold dark:text-white">{game.rating} / 5</h1>
                                     <p>Rating</p>
                                 </div>
                                 <div>
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">{game.released}</h1>
+                                    <h1 className="mt-4 text-xl font-semibold dark:text-white">{game.released}</h1>
                                     <p>Released</p>
                                 </div>
                                 <div>
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">{game.publishers ? game.publishers.map(pub => pub.name) : ''}</h1>
+                                    <h1 className="mt-4 text-xl font-semibold dark:text-white">{game.publishers ? game.publishers.map(pub => pub.name) : ''}</h1>
                                     <p>Publisher</p>
                                 </div>
                             </div>
@@ -84,14 +84,14 @@ const SingleGamePage = () => {
         </section>
         <hr />
         <div className="mt-10">
-            <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white mb-10">Buy Now</h1>
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Buy Now</h1>
             <div className="flex flex-wrap justify-center">
                 {game.stores?.map(store => store.store).map(s => <ReusableCard key={s.id} card={s} />)}
             </div>
         </div>
         <hr />
         <div className="mt-10">
-            <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white mb-10">Meet the Developers</h1>
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Meet the Developers</h1>
             <div className="flex flex-wrap justify-center">
                 {game.developers?.map((developer, idx) => <ReusableCard key={idx} card={developer}/>)}
             </div>

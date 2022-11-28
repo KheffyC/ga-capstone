@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css';
 import { getUser } from '../../utilities/users-service';
+import SmoothScroll from '../../components/SmoothScroll/SmoothScroll';
 import NavBar from '../../components/NavBar/NavBar';
 import Home from '../Home/Home'
 import GameGenre from '../GameGenre/GameGenre'
@@ -42,13 +43,15 @@ function App() {
   return (
     <main className="App">
       <NavBar user={user} setUser={setUser} navbarPlatforms={navbarPlatforms} />
-      <Routes>
-        <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
-        <Route path="/genres/:genre" element={<GameGenre />} />
-        <Route path="/games/:gameId" element={<SingleGamePage />} />
-        <Route path="/signin" element={<AuthPage setUser={setUser} />} />
-        <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
-      </Routes>
+      <SmoothScroll>
+        <Routes>
+          <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
+          <Route path="/genres/:genre" element={<GameGenre />} />
+          <Route path="/games/:gameId" element={<SingleGamePage />} />
+          <Route path="/signin" element={<AuthPage setUser={setUser} />} />
+          <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
+        </Routes>
+      </SmoothScroll>
       <Footer />
     </main>
   );

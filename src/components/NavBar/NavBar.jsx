@@ -43,7 +43,7 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
       <div className="flex h-16 items-center justify-around">
         {navPlatforms}
       </div>
-
+      <hr />
     </nav>
   )
 }
