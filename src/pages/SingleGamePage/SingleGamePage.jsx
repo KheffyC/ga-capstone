@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import * as gamesAPI from '../../utilities/game-api'
+import * as profileAPI from '../../utilities/profile-api'
 import ReusableCard from "../../components/ReusableCard/ReusableCard"
 
 const SingleGamePage = () => {
@@ -18,8 +19,9 @@ const SingleGamePage = () => {
         getSingleGameData(gameId)
     }, [gameId])
 
-    const handleWishlist = () => {
-        alert(gameId)
+    const handleWishlist = async() => {
+        const updatedWishlist = await profileAPI.addGameToWishlist(game)
+        console.log(updatedWishlist, 'testing in singlegamePage')
     }
 
 

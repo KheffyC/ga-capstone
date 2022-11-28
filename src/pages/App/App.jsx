@@ -19,6 +19,7 @@ function App() {
   const [recentGames, setRecentGames] = useState([])
   const [genres, setGenres] = useState([])
   const [navbarPlatforms, setNavbarPlatforms] = useState([])
+  const [wishlist, setWishlist] = useState([])
 
   useEffect(() => {
     async function getMostRecentGames(){
@@ -48,10 +49,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
           <Route path="/genres/:genre" element={<GameGenre />} />
-          <Route path="/games/:gameId" element={<SingleGamePage />} />
+          <Route path="/games/:gameId" element={<SingleGamePage setWishlist={setWishlist} />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
           <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
-          <Route path="/myprofile" element={<MyProfile user={user} />} />
+          <Route path="/myprofile" element={<MyProfile user={user} wishlist={wishlist} />} />
         </Routes>
       </SmoothScroll>
       <Footer />
