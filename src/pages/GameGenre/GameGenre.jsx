@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react' 
 import { useParams, Link } from 'react-router-dom'
+import ReusableCard from '../../components/ReusableCard/ReusableCard'
 import * as gamesAPI from '../../utilities/game-api'
 
 const GameGenre = ({ currentGenre }) => {
@@ -17,7 +18,9 @@ const GameGenre = ({ currentGenre }) => {
     }, [])
 
   return (
-    <div>{genreCatalog.map((game) => <div key={game.name}><Link to={`/games/${game.id}`}>{game.name}</Link></div>)}</div>
+    <>
+      <div className='flex flex-wrap mt-10 justify-center items-end'>{genreCatalog.map((game) => <Link key={game.name} to={`/games/${game.id}`}><ReusableCard card={game}/></Link>)}</div>
+    </>
   )
 }
 

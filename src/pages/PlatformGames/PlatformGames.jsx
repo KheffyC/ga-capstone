@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
+import ReusableCard from "../../components/ReusableCard/ReusableCard"
 import * as gamesAPI from '../../utilities/game-api'
 
 const PlatformGames = ({ navbarPlatforms }) => {
-    const [selectedPlatformId, setSelectedPlatformId] = useState(2)
+    const [selectedPlatformId, setSelectedPlatformId] = useState(null)
     const [allPlatformGames, setAllPlatformGames] = useState([])
     const { platform } = useParams()
 
@@ -18,12 +19,12 @@ const PlatformGames = ({ navbarPlatforms }) => {
           }
 
         getAllPlatformGames(selectedPlatformId)
-    }, [ platform ])
+    }, [navbarPlatforms, platform, selectedPlatformId])
     
   return (
     <>
-        <div>
-            {allPlatformGames.map((game, idx) => (<div><Link to={`/games/${game.id}`}>{game.name}</Link></div>))}
+        <div className="flex flex-wrap justify-center mt-10 items-end">
+            {allPlatformGames.map((game, idx) => (<Link key={idx} to={`/games/${game.id}`}><ReusableCard card={game}/></Link>))}
         </div>
     </>
   )
