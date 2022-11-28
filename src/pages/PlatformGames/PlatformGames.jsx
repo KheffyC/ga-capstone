@@ -14,7 +14,6 @@ const PlatformGames = ({ navbarPlatforms }) => {
         setSelectedPlatformId(selectedParent[0]?.id)
         async function getAllPlatformGames(platformId){
             const apiData = await gamesAPI.getAllPlatformGames(platformId)
-            console.log(apiData,'testing in comp page')
             setAllPlatformGames(apiData.results)
           }
 

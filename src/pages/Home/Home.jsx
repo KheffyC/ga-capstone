@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Hero from '../../components/Hero/Hero'
 import GameAd from '../../components/GameAd/GameAd'
 import GameDetails from '../../components/GameDetails/GameDetails'

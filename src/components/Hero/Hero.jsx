@@ -11,15 +11,14 @@ const Hero = ({ recentGames }) => {
         <br />
         <div className="flex justify-around mb-32 mt-40 ">
           {recentGames.map((game, idx) => (
-            <Link to={`/games/${game.id}`}>
+            <Link to={`/games/${game.id}`} key={idx}>
               <div
-              key={idx}
               style={{background: `url(${game.background_image}) center / cover no-repeat`}}
               className=" w-48 h-60 border flex-end relative"
               >
                 <div className="absolute bottom-0 left-auto max-w-5xl text-xl font-bold leading-none tracking-tighter text-white md:text-l lg:text-xl lg:max-w-full">{game.name}</div>
               </div>
-          </Link>)).slice(6,-7)}
+            </Link>)).slice(6,-7)}
         </div>
     </div>
   )

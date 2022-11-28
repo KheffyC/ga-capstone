@@ -9,6 +9,7 @@ import GameGenre from '../GameGenre/GameGenre'
 import SingleGamePage from '../SingleGamePage/SingleGamePage';
 import AuthPage from '../AuthPage/AuthPage'
 import PlatformGames from '../PlatformGames/PlatformGames';
+import MyProfile from '../MyProfile/MyProfile';
 import Footer from '../../components/Footer/Footer';
 import * as gamesAPI from '../../utilities/game-api'
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/games/:gameId" element={<SingleGamePage />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
           <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
+          <Route path="/myprofile" element={<MyProfile user={user} />} />
         </Routes>
       </SmoothScroll>
       <Footer />

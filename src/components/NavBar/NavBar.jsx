@@ -4,9 +4,9 @@ import * as userService from '../../utilities/users-service'
 const NavBar = ({ setUser, user, navbarPlatforms }) => {
 
   let activeStyle = {
-    textDecoration: "underline",
-    backgroundColor: 'white',
-    color: 'black'
+    textDecoration: "none",
+    fontWeight: 700,
+    color: 'rgba(37, 99, 235, 1)',
   };
 
 
@@ -31,14 +31,28 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
     <nav>
       <div className='flex justify-between align-items'> 
         <Link to="/">LOGO</Link>
-        &nbsp; | &nbsp;
-        {user ? 
-        <>Welcome, {user.name}!
-        <Link to="" onClick={handleLogOut}>Log Out</Link>
-        </>
-        :
-        <Link to="/signin">Sign In</Link>
-        }
+        <div>
+          {user ?
+            <div className='flex mb-5'>
+              <div className='mr-5'>
+                <Link to="/myprofile">
+                  <button className='bg-transparent hover:bg-indigo-800 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>
+                    View My Profile
+                  </button>
+                </Link>
+              </div>
+              <div>
+                <Link to="" onClick={handleLogOut}  > <button className='bg-transparent hover:bg-red-500 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>Log Out</button></Link>
+              </div>
+            </div> 
+            :
+            <Link to="/signin">
+              <button className='bg-transparent hover:bg-blue-300 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>
+                Sign In
+              </button>
+            </Link>
+          }
+        </div>
       </div>
       <div className="flex h-16 items-center justify-around">
         {navPlatforms}

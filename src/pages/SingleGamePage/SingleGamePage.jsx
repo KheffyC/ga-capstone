@@ -96,6 +96,27 @@ const SingleGamePage = () => {
                 {game.developers?.map((developer, idx) => <ReusableCard key={idx} card={developer}/>)}
             </div>
         </div>
+        <hr />
+        <div className="mt-10">
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Available on</h1>
+            <div className="flex flex-wrap justify-center">
+                {game.platforms?.map((platform, idx) => <ReusableCard key={idx} card={platform.platform}/>)}
+            </div>
+        </div>
+        <hr />
+        <div className="mt-10">
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Genres</h1>
+            <div className="flex flex-wrap justify-center">
+                {game.genres?.map((genre, idx) => <ReusableCard key={idx} card={genre}/>)}
+            </div>
+        </div>
+        <hr />
+        <div className="mt-10">
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Search Similar Games by Tag</h1>
+            <div className="flex flex-wrap justify-center">
+                {game.tags?.map((tag, idx) => <ReusableCard key={idx} card={tag}/>)}
+            </div>
+        </div>
         
     </>
   )
