@@ -20,16 +20,30 @@ const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
     }, [gameId])
 
     const handleWishlist = async() => {
+
+        if (updatedProfile.alreadyPlayed.map(played => played.id).includes(parseInt(gameId))) await removeGameFromPlayed()
+
         const updatedProfileWishlist = await profileAPI.addGameToWishlist(game)
         setUpdatedProfile(updatedProfileWishlist)
     }
 
     const removeGameFromWishlist = async() => {
-        const removedGameProfile = await profileAPI.removeGameFromWishlist(game)
-        console.log('removed the game')
-        setUpdatedProfile(removedGameProfile)
+        const removedGameFromWishlist = await profileAPI.removeGameFromWishlist(game)
+        setUpdatedProfile(removedGameFromWishlist)
     }
 
+    const handleAlreadyPlayed = async() => {
+        
+        if(updatedProfile.wishlist.map(wish => wish.id).includes(parseInt(gameId))) await removeGameFromWishlist()
+
+        const updatedProfileAlreadyPlayed = await profileAPI.addGameToAlreadyPlayed(game)
+        setUpdatedProfile(updatedProfileAlreadyPlayed)
+    }
+    
+    const removeGameFromPlayed = async() => {
+        const removedGameFromPlayed = await profileAPI.removeGameFromPlayed(game)
+        setUpdatedProfile(removedGameFromPlayed)
+    }
 
 
   return (
@@ -50,7 +64,7 @@ const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
                                     <div className="inline-flex w-full sm:w-auto sm:mx-2">
                                         { updatedProfile.wishlist?.map(wish => wish.id).includes(parseInt(gameId))
                                         ?
-                                        <button onClick={removeGameFromWishlist} className="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-green-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                        <button onClick={removeGameFromWishlist} className="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-green-800 rounded-lg hover:bg-green-700 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                                             Added to Wishlist
                                         </button>
                                         :
@@ -61,9 +75,16 @@ const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
                                     </div>
 
                                     <div className="inline-flex w-full mt-4 sm:w-auto sm:mx-2 sm:mt-0">
-                                        <button className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-gray-900 border-gray-700 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-700 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
+                                        {updatedProfile.alreadyPlayed?.map(played => played.id).includes(parseInt(gameId))
+                                        ?
+                                        <button onClick={removeGameFromPlayed} className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-red-700 border-gray-700 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-700 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
+                                            Remove From Already Played
+                                        </button>
+                                        :
+                                        <button onClick={handleAlreadyPlayed} className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-gray-900 border-gray-700 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-700 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
                                             Add to Already Played
                                         </button>
+                                        }
                                     </div>
                                 </div>
                             </div>

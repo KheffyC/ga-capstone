@@ -12,7 +12,7 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
 
   
   const navPlatforms = navbarPlatforms.map((platform, idx) => (
-    <NavLink to={`/platforms/${platform.slug}`} key={idx} style={ ( { isActive } ) => isActive ? activeStyle : undefined}   >
+    <NavLink to={`/platforms/${platform.id}`} key={idx} style={ ( { isActive } ) => isActive ? activeStyle : undefined}   >
       <p>{platform.name}</p>
     </NavLink>))
 

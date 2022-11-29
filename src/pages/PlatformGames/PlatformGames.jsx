@@ -3,22 +3,18 @@ import { useParams, Link } from "react-router-dom"
 import ReusableCard from "../../components/ReusableCard/ReusableCard"
 import * as gamesAPI from '../../utilities/game-api'
 
-const PlatformGames = ({ navbarPlatforms }) => {
-    const [selectedPlatformId, setSelectedPlatformId] = useState(null)
-    const [allPlatformGames, setAllPlatformGames] = useState([])
+const PlatformGames = () => {
     const { platform } = useParams()
+    const [allPlatformGames, setAllPlatformGames] = useState([])
 
 
     useEffect(() => {
-        const selectedParent = navbarPlatforms.filter(parent => parent.slug === platform)
-        setSelectedPlatformId(selectedParent[0]?.id)
-        async function getAllPlatformGames(platformId){
-            const apiData = await gamesAPI.getAllPlatformGames(platformId)
-            setAllPlatformGames(apiData.results)
-          }
-
-        getAllPlatformGames(selectedPlatformId)
-    }, [navbarPlatforms, platform, selectedPlatformId])
+      async function getAllPlatformGames(platformId){
+          const apiData = await gamesAPI.getAllPlatformGames(platformId)
+          setAllPlatformGames(apiData.results)
+      }
+      getAllPlatformGames(platform)
+    }, [platform])
     
   return (
     <>

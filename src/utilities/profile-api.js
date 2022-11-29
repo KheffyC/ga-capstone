@@ -13,3 +13,11 @@ export async function addGameToWishlist(game){
 export async function removeGameFromWishlist(game){
     return sendRequest(`${SERVER_URL}/delete`, 'DELETE', game)
 }
+
+export async function addGameToAlreadyPlayed(game){
+    return sendRequest(`${SERVER_URL}/played`, 'POST', game)
+}
+
+export async function removeGameFromPlayed(game){
+    return sendRequest(`${SERVER_URL}/played/delete`, 'DELETE', game)
+}

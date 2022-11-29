@@ -56,7 +56,7 @@ function App() {
           <Route path="/genres/:genre" element={<GameGenre />} />
           <Route path="/games/:gameId" element={<SingleGamePage setUpdatedProfile={setUpdatedProfile} updatedProfile={updatedProfile} />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
-          <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
+          <Route path="/platforms/:platform" element={<PlatformGames />} />
           <Route path="/myprofile" element={<MyProfile user={user} updatedProfile={updatedProfile} />} />
         </Routes>
       </SmoothScroll>
