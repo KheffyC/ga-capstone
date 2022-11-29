@@ -4,7 +4,7 @@ import * as gamesAPI from '../../utilities/game-api'
 import * as profileAPI from '../../utilities/profile-api'
 import ReusableCard from "../../components/ReusableCard/ReusableCard"
 
-const SingleGamePage = () => {
+const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
     const [showMore, setShowMore] = useState(false)
     const [game, setGame] = useState([])
 
@@ -20,9 +20,16 @@ const SingleGamePage = () => {
     }, [gameId])
 
     const handleWishlist = async() => {
-        const updatedWishlist = await profileAPI.addGameToWishlist(game)
-        console.log(updatedWishlist, 'testing in singlegamePage')
+        const updatedProfileWishlist = await profileAPI.addGameToWishlist(game)
+        setUpdatedProfile(updatedProfileWishlist)
     }
+
+    const removeGameFromWishlist = async() => {
+        const removedGameProfile = await profileAPI.removeGameFromWishlist(game)
+        console.log('removed the game')
+        setUpdatedProfile(removedGameProfile)
+    }
+
 
 
   return (
@@ -41,9 +48,16 @@ const SingleGamePage = () => {
                                 </div>
                                 <div className="mt-6 sm:-mx-2">
                                     <div className="inline-flex w-full sm:w-auto sm:mx-2">
+                                        { updatedProfile.wishlist?.map(wish => wish.id).includes(parseInt(gameId))
+                                        ?
+                                        <button onClick={removeGameFromWishlist} className="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-green-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                                            Added to Wishlist
+                                        </button>
+                                        :
                                         <button onClick={handleWishlist} className="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                                             Add to Wishlist
                                         </button>
+                                    }
                                     </div>
 
                                     <div className="inline-flex w-full mt-4 sm:w-auto sm:mx-2 sm:mt-0">

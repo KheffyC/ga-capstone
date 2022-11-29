@@ -5,6 +5,8 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
 
 router.post('/', profilesCtrl.addGameToWishlist)
+router.get('/profile', profilesCtrl.getProfile)
+router.delete('/delete', profilesCtrl.removeGameFromWishlist)
 
 
 

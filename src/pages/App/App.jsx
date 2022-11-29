@@ -12,14 +12,14 @@ import PlatformGames from '../PlatformGames/PlatformGames';
 import MyProfile from '../MyProfile/MyProfile';
 import Footer from '../../components/Footer/Footer';
 import * as gamesAPI from '../../utilities/game-api'
-
+import * as profilesAPI from '../../utilities/profile-api'
 
 function App() {
   const [user, setUser] = useState(getUser())
+  const [updatedProfile, setUpdatedProfile] = useState({})
   const [recentGames, setRecentGames] = useState([])
   const [genres, setGenres] = useState([])
   const [navbarPlatforms, setNavbarPlatforms] = useState([])
-  const [wishlist, setWishlist] = useState([])
 
   useEffect(() => {
     async function getMostRecentGames(){
@@ -34,10 +34,15 @@ function App() {
       const apiData = await gamesAPI.getPlatformData()
       setNavbarPlatforms(apiData.results.slice(0,-6))
     }
+    async function getProfile(){
+      const profile = await profilesAPI.getProfile()
+      setUpdatedProfile(profile)
+    }
 
     getMostRecentGames()
     getGenres()
     getPlatformData()
+    getProfile()
   }, [])
   
 
@@ -49,10 +54,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
           <Route path="/genres/:genre" element={<GameGenre />} />
-          <Route path="/games/:gameId" element={<SingleGamePage setWishlist={setWishlist} />} />
+          <Route path="/games/:gameId" element={<SingleGamePage setUpdatedProfile={setUpdatedProfile} updatedProfile={updatedProfile} />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
           <Route path="/platforms/:platform" element={<PlatformGames navbarPlatforms={navbarPlatforms} />} />
-          <Route path="/myprofile" element={<MyProfile user={user} wishlist={wishlist} />} />
+          <Route path="/myprofile" element={<MyProfile user={user} updatedProfile={updatedProfile} />} />
         </Routes>
       </SmoothScroll>
       <Footer />
