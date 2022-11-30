@@ -8,6 +8,7 @@ module.exports ={
     getPlatformData,
     getAllPlatformGames,
     getSingleGameData,
+    getTagCatalog,
 }
 
 
@@ -127,6 +128,25 @@ async function getAllPlatformGames(req, res){
 
 async function getSingleGameData(req, res){
     const url = `https://rawg.io/api/games/${req.params.gameId}?key=${process.env.API_KEY}`;
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    try{
+        const response = await fetch(url, options)
+        const data = await response.json()
+        res.json(data)
+    } catch(err){
+        console.log(err.message)
+    }
+}
+
+async function getTagCatalog(req, res){
+    const url = `https://rawg.io/api/games?tags=${req.params.tag}&key=${process.env.API_KEY}`;
     
     const options = {
         method: 'GET',

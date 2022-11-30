@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import ReusableCard from "../../components/ReusableCard/ReusableCard"
 
@@ -7,7 +7,7 @@ const MyProfile = ({ user, updatedProfile }) => {
   const [collections, setCollections] = useState(false)
 
   const noCollectionsObj = {
-    name: 'Add a Collection',
+    name: 'Add New Collection',
     image_background: 'https://static.vecteezy.com/system/resources/previews/009/344/470/original/plus-sign-transparent-free-png.png'
   }
 
@@ -38,7 +38,7 @@ const MyProfile = ({ user, updatedProfile }) => {
           <div className="mt-10">
               {collections ? 
               <>
-                <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">hello</h1>
+                <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Collections</h1>
                 <div className="flex flex-wrap justify-center">
                  <ReusableCard card={noCollectionsObj} />
                 </div>
@@ -47,7 +47,7 @@ const MyProfile = ({ user, updatedProfile }) => {
               <>
                 <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">{property}</h1>
                 <div className="flex flex-wrap justify-center">
-                  {updatedProfile[`${property}`].map((wish, idx) => <ReusableCard key={idx} card={wish} />)}
+                  {updatedProfile[`${property}`].map((elem, idx) => <Link to={`/games/${elem.id}`}><ReusableCard key={idx} card={elem} /></Link>)}
                 </div>
               </>  
               }

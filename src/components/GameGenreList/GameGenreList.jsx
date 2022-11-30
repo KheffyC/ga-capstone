@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Carousel from '../Carousel/Carousel'
 
 const GameGenreList = ({ genres }) => {
 
@@ -12,20 +13,6 @@ const GameGenreList = ({ genres }) => {
           <div className="max-w-5xl text-2xl font-bold leading-none tracking-tighter text-700 md:text-5xl lg:text-6xl lg:max-w-full">{genre.name}</div>
         </div>
       </Link>)).slice(0, -13)
-      
-
-
-  // Rest of the genres that will be displayed in carousel. 
-    const lesserGenres = genres.map((genre, idx) => (
-      <Link to={`genres/${genre.slug}`} key={idx}>
-        <div
-          style={{background: `url(${genre.image_background}) center / cover no-repeat`, height: '15vh', width: '7vw'}}
-          >
-          {genre.name}
-        </div>
-      </Link>)).slice(-13)
-        
-
 
   return (
     <>
@@ -35,7 +22,7 @@ const GameGenreList = ({ genres }) => {
     </div>
     <div className="flex border-t-4 max-w-l justify-center">
       <hr />
-      {lesserGenres}
+      <Carousel  genres={genres}/>
     </div>
     </>
   )

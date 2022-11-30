@@ -6,6 +6,7 @@ import SmoothScroll from '../../components/SmoothScroll/SmoothScroll';
 import NavBar from '../../components/NavBar/NavBar';
 import Home from '../Home/Home'
 import GameGenre from '../GameGenre/GameGenre'
+import GameTag from '../GameTag/GameTag';
 import SingleGamePage from '../SingleGamePage/SingleGamePage';
 import AuthPage from '../AuthPage/AuthPage'
 import PlatformGames from '../PlatformGames/PlatformGames';
@@ -54,6 +55,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
           <Route path="/genres/:genre" element={<GameGenre />} />
+          <Route path="/tags/:tag" element={<GameTag />} />
           <Route path="/games/:gameId" element={<SingleGamePage setUpdatedProfile={setUpdatedProfile} updatedProfile={updatedProfile} />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
           <Route path="/platforms/:platform" element={<PlatformGames />} />

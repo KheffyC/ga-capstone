@@ -30,3 +30,7 @@ export async function getAllPlatformGames(platformId){
 export async function getSingleGameData(gameId){
     return sendRequest(`${SERVER_URL}/games/${gameId}`)
 }
+
+export async function getTagCatalog(tagSlug){
+    return sendRequest(`${SERVER_URL}/tags/${tagSlug}`)
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import * as gamesAPI from '../../utilities/game-api'
 import * as profileAPI from '../../utilities/profile-api'
 import ReusableCard from "../../components/ReusableCard/ReusableCard"
@@ -77,7 +77,7 @@ const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
                                     <div className="inline-flex w-full mt-4 sm:w-auto sm:mx-2 sm:mt-0">
                                         {updatedProfile.alreadyPlayed?.map(played => played.id).includes(parseInt(gameId))
                                         ?
-                                        <button onClick={removeGameFromPlayed} className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-red-700 border-gray-700 rounded-lg dark:bg-gray-900 dark:border-gray-700 hover:bg-gray-700 dark:text-white sm:w-auto dark:hover:bg-gray-800 dark:ring-gray-700 focus:ring focus:ring-gray-200 focus:ring-opacity-80">
+                                        <button onClick={removeGameFromPlayed} className="inline-flex items-center justify-center w-full px-5 py-2 text-white transition-colors duration-150 transform bg-red-700 border-gray-700 rounded-lg hover:bg-gray-700   focus:ring focus:ring-gray-200 focus:ring-opacity-80">
                                             Remove From Already Played
                                         </button>
                                         :
@@ -145,16 +145,16 @@ const SingleGamePage = ({ setUpdatedProfile, updatedProfile }) => {
         </div>
         <hr />
         <div className="mt-10">
-            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Genres</h1>
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Browse By Similar Genres</h1>
             <div className="flex flex-wrap justify-center">
-                {game.genres?.map((genre, idx) => <ReusableCard key={idx} card={genre}/>)}
+                {game.genres?.map((genre, idx) => <Link key={idx} to={`/genres/${genre.slug}`}><ReusableCard  card={genre}/></Link>)}
             </div>
         </div>
         <hr />
         <div className="mt-10">
-            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Search Similar Games by Tag</h1>
+            <h1 className="text-2xl font-semibold capitalize dark:text-white mb-10">Browse By Similar Tags</h1>
             <div className="flex flex-wrap justify-center">
-                {game.tags?.map((tag, idx) => <ReusableCard key={idx} card={tag}/>)}
+                {game.tags?.map((tag, idx) => <Link key={idx} to={`/tags/${tag.slug}`}><ReusableCard  card={tag}/></Link>)}
             </div>
         </div>
         
