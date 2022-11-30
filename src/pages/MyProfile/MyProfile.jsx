@@ -26,7 +26,7 @@ const MyProfile = ({ user, updatedProfile }) => {
                       {user.name}
                     </h1>
                   </div>
-                  <div className="flex items-end text-right px-5">
+                  <div className="flex flex-wrap items-end text-right px-5">
                     <p className="max-w-md mt-4 font-semibold text-white md:max-w-xl lg:mt-0 px-5 cursor-pointer" onClick={handleClick}>alreadyPlayed</p>
                     <p className="max-w-md mt-4 font-semibold text-white md:max-w-xl lg:mt-0 px-5 cursor-pointer" onClick={handleClick}>wishlist</p>
                     <p className="max-w-md mt-4 font-semibold text-white md:max-w-xl lg:mt-0 px-5 cursor-pointer"onClick={() => setCollections(true)}>Collections</p>
