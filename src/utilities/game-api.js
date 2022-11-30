@@ -34,3 +34,7 @@ export async function getSingleGameData(gameId){
 export async function getTagCatalog(tagSlug){
     return sendRequest(`${SERVER_URL}/tags/${tagSlug}`)
 }
+
+export async function getSearchCatalog(searchParam){
+    return sendRequest(`${SERVER_URL}/search/${searchParam}`)
+}

@@ -14,6 +14,7 @@ import MyProfile from '../MyProfile/MyProfile';
 import Footer from '../../components/Footer/Footer';
 import * as gamesAPI from '../../utilities/game-api'
 import * as profilesAPI from '../../utilities/profile-api'
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const [user, setUser] = useState(getUser())
@@ -59,6 +60,7 @@ function App() {
           <Route path="/games/:gameId" element={<SingleGamePage setUpdatedProfile={setUpdatedProfile} updatedProfile={updatedProfile} />} />
           <Route path="/signin" element={<AuthPage setUser={setUser} />} />
           <Route path="/platforms/:platform" element={<PlatformGames />} />
+          <Route path="/search/:search" element={<SearchResults />} />
           <Route path="/myprofile" element={<MyProfile user={user} updatedProfile={updatedProfile} />} />
         </Routes>
       </SmoothScroll>

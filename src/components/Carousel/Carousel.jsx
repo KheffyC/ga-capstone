@@ -23,11 +23,11 @@ export default function Carousel({ genres }) {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={5}
         spaceBetween={30}
         slidesPerGroup={3}
         loop={true}
-        loopFillGroupWithBlank={true}
+        loopFillGroupWithBlank={false}
         pagination={{
           clickable: true,
         }}

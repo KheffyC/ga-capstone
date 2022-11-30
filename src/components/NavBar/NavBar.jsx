@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import * as userService from '../../utilities/users-service'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -13,46 +13,45 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
     color: 'rgba(37, 99, 235, 1)',
   };
 
-
+  const navigate = useNavigate()
   
+  const handleLogOut = () => {
+  
+    userService.logOut();
+    setUser()
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    let searchValue = e.target[0].value.toLowerCase()
+    navigate(`/search/${searchValue}`)
+    
+  }
+
   const hamburgerNavPlatforms = navbarPlatforms.map((platform, idx) => (
-    <li onClick={() => setIsNavOpen(false)} className="border-b border-gray-400 my-8 uppercase text-white bg-black">
-      <NavLink to={`/platforms/${platform.id}`} key={idx} style={ ( { isActive } ) => isActive ? activeStyle : undefined} >
+    <li key={idx} onClick={() => setIsNavOpen(false)} className="border-b border-gray-400 my-8 uppercase text-white bg-black">
+      <NavLink to={`/platforms/${platform.id}`}  style={ ( { isActive } ) => isActive ? activeStyle : undefined} >
         {platform.name}
       </NavLink>
     </li>))
 
   const navPlatforms = navbarPlatforms.map((platform, idx) => (
-    <li>
-      <NavLink to={`/platforms/${platform.id}`} key={idx} style={ ( { isActive } ) => isActive ? activeStyle : undefined} >
+    <li key={idx}>
+      <NavLink to={`/platforms/${platform.id}`}  style={ ( { isActive } ) => isActive ? activeStyle : undefined} >
         {platform.name}
       </NavLink>
     </li>))
-
-  const handleLogOut = () => {
-
-    userService.logOut();
-    setUser()
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    alert('working!')
-  }
-      
-
-
 
   return (
     <div className="flex items-center justify-between border-b border-gray-400 py-8">
       <Link to="/">
         <img src="/appLogo.png" alt="logo" className='object-scale-down h-20 w-36'/>
       </Link>
-        <div class="pt-2 relative mx-auto text-gray-600 w-1/3">
-          <form>
-            <input autoComplete='off' class="border-1 border-black bg-gray-900 h-8 px-5 pr-4 w-2/3 rounded-lg text-sm text-white focus:outline-none text-left"
-              type="search" name="search" placeholder="Search" />
-            <button type="submit" class="absolute right-0 top-0 mt-3.5 mr-8">
+        <div className="pt-2 relative mx-auto text-gray-600 w-1/3">
+          <form onSubmit={handleSubmit}>
+            <input autoComplete='off'  className="border-1 border-black bg-gray-900 h-8 px-5 pr-4 w-2/3 rounded-lg text-sm text-white focus:outline-none text-left"
+              type="text" name="search" placeholder="Search" />
+            <button type="submit" className="absolute right-0 top-0 mt-3.5 mr-8">
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </form>
@@ -157,40 +156,7 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
         `}
     </style>
 
-
     </div>
-
-    // <nav>
-    //   <div className='flex justify-between align-items'> 
-    //     <Link to="/"> <img src="/appLogo.png" alt="Logo" className='object-scale-down h-20 w-36'/> </Link>
-    //     <div>
-    //       {user ?
-    //         <div className='flex mb-5'>
-    //           <div className='mr-5'>
-    //             <Link to="/myprofile">
-    //               <button className='bg-transparent hover:bg-indigo-800 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>
-    //                 View My Profile
-    //               </button>
-    //             </Link>
-    //           </div>
-    //           <div>
-    //             <Link to="" onClick={handleLogOut}  > <button className='bg-transparent hover:bg-red-500 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>Log Out</button></Link>
-    //           </div>
-    //         </div> 
-    //         :
-    //         <Link to="/signin">
-    //           <button className='bg-transparent hover:bg-blue-300 text-white font-semibold hover:text-black py-1 px-4 border border-blue-800 hover:border-transparent rounded'>
-    //             Sign In
-    //           </button>
-    //         </Link>
-    //       }
-    //     </div>
-    //   </div>
-    //   <div className="flex h-16 items-center justify-around">
-    //     {navPlatforms}
-    //   </div>
-    //   <hr />
-    // </nav>
   )
 }
 

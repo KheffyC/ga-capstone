@@ -22,7 +22,7 @@ const GameGenreList = ({ genres }) => {
     </div>
     <div className="flex border-t-4 max-w-l justify-center">
       <hr />
-      <Carousel  genres={genres}/>
+      <Carousel genres={genres}/>
     </div>
     </>
   )

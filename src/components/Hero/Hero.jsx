@@ -1,6 +1,28 @@
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from 'react-router-dom'
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// import required modules
+import { Pagination, Navigation } from "swiper";
+
+
 const Hero = ({ recentGames }) => {
+  
+  const heroCarousel = recentGames.map((game, idx) => (
+    <SwiperSlide key={idx} style={{background: `url(${game.background_image}) center / cover no-repeat`}}>
+      <Link to={`/games/${game.id}`} >
+        <div className=" w-48 h-60 flex-end relative">
+          <div className="absolute bottom-0 left-auto max-w-5xl text-xl font-bold leading-none tracking-tighter text-white md:text-l lg:text-xl lg:max-w-full">
+            {game.name}
+          </div>
+        </div>
+      </Link>
+    </SwiperSlide>))
+
   return (
     <div className="h-4/5 mt-32">
         <div className="">
@@ -10,15 +32,21 @@ const Hero = ({ recentGames }) => {
         </div>
         <br />
         <div className="flex justify-around mb-32 mt-40 ">
-          {recentGames.map((game, idx) => (
-            <Link to={`/games/${game.id}`} key={idx}>
-              <div
-              style={{background: `url(${game.background_image}) center / cover no-repeat`}}
-              className=" w-48 h-60 border flex-end relative"
-              >
-                <div className="absolute bottom-0 left-auto max-w-5xl text-xl font-bold leading-none tracking-tighter text-white md:text-l lg:text-xl lg:max-w-full">{game.name}</div>
-              </div>
-            </Link>)).slice(6,-7)}
+        <Swiper
+          slidesPerView={5}
+          spaceBetween={30}
+          slidesPerGroup={3}
+          loop={true}
+          loopFillGroupWithBlank={false}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper mt-10 mb-10"
+        >
+          {heroCarousel}
+          </Swiper>
         </div>
     </div>
   )
