@@ -1,7 +1,6 @@
 const fetch = require('node-fetch')
 
 module.exports ={
-    getGames, 
     recentGames,
     genres,
     getGenreCatalog,
@@ -10,26 +9,6 @@ module.exports ={
     getSingleGameData,
     getTagCatalog,
     getSearchCatalog,
-}
-
-
-async function getGames(req, res){  
-    const url = `https://rawg.io/api/games?key=${process.env.API_KEY}&page_size=100`;
-    
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-
-    try{
-        const response = await fetch(url, options)
-        const data = await response.json()
-        res.json(data)
-    } catch(err){
-        console.log(err.message)
-    }
 }
 
 async function recentGames(req, res){  
@@ -71,7 +50,7 @@ async function genres(req, res){
 }
 
 async function getGenreCatalog(req, res){
-    const url = `https://rawg.io/api/games?dates=2019-01-01%2C2022-12-31&exclude_additions=true&genres=${req.params.genre}&key=${process.env.API_KEY}&page=1`;
+    const url = `https://rawg.io/api/games?dates=2018-01-01%2C2022-12-31&exclude_additions=true&genres=${req.params.genre}&key=${process.env.API_KEY}&page=1`;
     
     const options = {
         method: 'GET',
@@ -147,7 +126,7 @@ async function getSingleGameData(req, res){
 }
 
 async function getTagCatalog(req, res){
-    const url = `https://rawg.io/api/games?tags=${req.params.tag}&key=${process.env.API_KEY}`;
+    const url = `https://rawg.io/api/games?tags=${req.params.tag}&key=${process.env.API_KEY}&ordering=-metacritic`;
     
     const options = {
         method: 'GET',
@@ -166,7 +145,7 @@ async function getTagCatalog(req, res){
 }
 
 async function getSearchCatalog(req, res){
-    const url = `https://rawg.io/api/games?search=${req.params.search}&key=${process.env.API_KEY}`;
+    const url = `https://rawg.io/api/games?search=${req.params.search}&key=${process.env.API_KEY}&page=${req.params.page}`;
     
     const options = {
         method: 'GET',

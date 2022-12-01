@@ -3,10 +3,6 @@ import sendRequest from "./send-request";
 const SERVER_URL = '/api/games'
 
 
-export async function getGames(){
-    return sendRequest(`${SERVER_URL}`)
-}
-
 export async function getMostRecentGames(){
     return sendRequest(`${SERVER_URL}/recent`)
 }
@@ -35,6 +31,6 @@ export async function getTagCatalog(tagSlug){
     return sendRequest(`${SERVER_URL}/tags/${tagSlug}`)
 }
 
-export async function getSearchCatalog(searchParam){
-    return sendRequest(`${SERVER_URL}/search/${searchParam}`)
+export async function getSearchCatalog(searchParam, pageNumber){
+    return sendRequest(`${SERVER_URL}/search/${searchParam}/${pageNumber}`)
 }

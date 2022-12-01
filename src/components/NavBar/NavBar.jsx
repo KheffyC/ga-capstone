@@ -29,7 +29,7 @@ const NavBar = ({ setUser, user, navbarPlatforms }) => {
   }
 
   const hamburgerNavPlatforms = navbarPlatforms.map((platform, idx) => (
-    <li key={idx} onClick={() => setIsNavOpen(false)} className="border-b border-gray-400 my-8 uppercase text-white bg-black">
+    <li key={idx} onClick={() => setIsNavOpen(false)} className="border-b border-gray-400 my-8 uppercase text-white bg-black cursor-pointer">
       <NavLink to={`/platforms/${platform.id}`}  style={ ( { isActive } ) => isActive ? activeStyle : undefined} >
         {platform.name}
       </NavLink>
