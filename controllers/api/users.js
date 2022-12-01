@@ -2,7 +2,6 @@ const User = require('../../models/user')
 const Profile = require('../../models/profile')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const profile = require('../../models/profile')
 
 
 module.exports={

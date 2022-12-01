@@ -17,7 +17,7 @@ const MyProfile = ({ user, updatedProfile }) => {
   }
 
   return (
-    <section className="w-full">
+    <section className="w-full min-h-screen">
       <div className="relative items-center w-full px-2 pt-12 mx-auto md:px-8 lg:px-16 max-w-7xl">
         <div className="flex w-full mx-auto">
                 <div className="items-center flex">

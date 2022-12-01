@@ -27,8 +27,8 @@ export async function getSingleGameData(gameId){
     return sendRequest(`${SERVER_URL}/games/${gameId}`)
 }
 
-export async function getTagCatalog(tagSlug){
-    return sendRequest(`${SERVER_URL}/tags/${tagSlug}`)
+export async function getTagCatalog(tagSlug, pageNumber){
+    return sendRequest(`${SERVER_URL}/tags/${tagSlug}/${pageNumber}`)
 }
 
 export async function getSearchCatalog(searchParam, pageNumber){

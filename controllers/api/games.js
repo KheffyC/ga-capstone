@@ -126,7 +126,7 @@ async function getSingleGameData(req, res){
 }
 
 async function getTagCatalog(req, res){
-    const url = `https://rawg.io/api/games?tags=${req.params.tag}&key=${process.env.API_KEY}&ordering=-metacritic`;
+    const url = `https://rawg.io/api/games?tags=${req.params.tag}&key=${process.env.API_KEY}&ordering=-metacritic&page=${req.params.page}`;
     
     const options = {
         method: 'GET',
