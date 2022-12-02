@@ -90,7 +90,7 @@ const SignupForm = ({ setUser, setIsNewUser }) => {
                         </div>
                     </div>
                     <div class="order-first hidden w-full lg:block">
-                    <img class="object-cover h-full bg-cover rounded-l-lg" src="https://images.unsplash.com/photo-1491933382434-500287f9b54b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="" />
+                    <img class="object-cover h-full bg-cover rounded-l-lg" src="/consoles.png" alt="" />
                     </div>
                 </div>
             </div>

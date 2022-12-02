@@ -50,7 +50,7 @@ async function genres(req, res){
 }
 
 async function getGenreCatalog(req, res){
-    const url = `https://rawg.io/api/games?dates=2018-01-01%2C2022-12-31&exclude_additions=true&genres=${req.params.genre}&key=${process.env.API_KEY}&page=1`;
+    const url = `https://rawg.io/api/games?dates=2018-01-01%2C2022-12-31&exclude_additions=true&genres=${req.params.genre}&key=${process.env.API_KEY}&page=${req.params.page}`;
     
     const options = {
         method: 'GET',
@@ -88,7 +88,7 @@ async function getPlatformData(req, res){
 }
 
 async function getAllPlatformGames(req, res){
-    const url = `https://rawg.io/api/games?parent_platforms=${req.params.platformId}&key=${process.env.API_KEY}&ordering=-metacritic`;
+    const url = `https://rawg.io/api/games?parent_platforms=${req.params.platformId}&key=${process.env.API_KEY}&ordering=-metacritic&page=${req.params.page}`;
     
     const options = {
         method: 'GET',

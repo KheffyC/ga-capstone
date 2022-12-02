@@ -4,11 +4,11 @@ const profilesCtrl = require('../../controllers/api/profiles')
 const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
 
-router.post('/', profilesCtrl.addGameToWishlist)
-router.get('/profile', profilesCtrl.getProfile)
-router.delete('/delete', profilesCtrl.removeGameFromWishlist)
-router.post('/played', profilesCtrl.addGameToAlreadyPlayed)
-router.delete('/played/delete', profilesCtrl.removeGameFromPlayed)
+router.post('/',ensureLoggedIn, profilesCtrl.addGameToWishlist)
+router.get('/profile',ensureLoggedIn, profilesCtrl.getProfile)
+router.delete('/delete',ensureLoggedIn, profilesCtrl.removeGameFromWishlist)
+router.post('/played',ensureLoggedIn, profilesCtrl.addGameToAlreadyPlayed)
+router.delete('/played/delete',ensureLoggedIn, profilesCtrl.removeGameFromPlayed)
 
 
 

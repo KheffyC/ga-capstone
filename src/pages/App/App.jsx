@@ -40,12 +40,13 @@ function App() {
       const profile = await profilesAPI.getProfile()
       setUpdatedProfile(profile)
     }
-
-    getMostRecentGames()
-    getGenres()
-    getPlatformData()
-    getProfile()
-  }, [])
+    if (user){
+      getMostRecentGames()
+      getGenres()
+      getPlatformData()
+      getProfile()
+    }
+  }, [user])
   
 
 
@@ -54,7 +55,7 @@ function App() {
       <NavBar user={user} setUser={setUser} navbarPlatforms={navbarPlatforms} />
       <SmoothScroll>
         <Routes>
-          <Route path="/" element={<Home recentGames={recentGames} genres={genres}/>} />
+          <Route path="/" element={<Home recentGames={recentGames} genres={genres} user={user}/>} />
           <Route path="/genres/:genre" element={<GameGenre />} />
           <Route path="/tags/:tag" element={<GameTag />} />
           <Route path="/games/:gameId" element={<SingleGamePage setUpdatedProfile={setUpdatedProfile} updatedProfile={updatedProfile} />} />

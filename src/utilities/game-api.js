@@ -15,12 +15,12 @@ export async function getPlatformData(){
     return sendRequest(`${SERVER_URL}/platforms`)
 }
 
-export async function getGenreCatalog(genre){
-    return sendRequest(`${SERVER_URL}/genres/${genre}`)
+export async function getGenreCatalog(genre, pageNumber){
+    return sendRequest(`${SERVER_URL}/genres/${genre}/${pageNumber}`)
 }
 
-export async function getAllPlatformGames(platformId){
-    return sendRequest(`${SERVER_URL}/platforms/${platformId}`)
+export async function getAllPlatformGames(platformId, pageNumber){
+    return sendRequest(`${SERVER_URL}/platforms/${platformId}/${pageNumber}`)
 }
 
 export async function getSingleGameData(gameId){
