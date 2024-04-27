@@ -15,7 +15,7 @@ Search by Genre, Tags, Fuzzy search, and even by Parent Platform. Youre guarante
 ## Getting Started 
 Click on the link below to get started:
 
-<a href="#">K-Dot Games</a>
+<a href="https://kdotgames.herokuapp.com/">K-Dot Games</a>
 
 ## Application Demo
 
